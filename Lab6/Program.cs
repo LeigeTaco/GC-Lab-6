@@ -182,6 +182,8 @@ namespace Lab6
 
                 int diceSize = ValidIntry("How big are the dice?");
                 int roll1 = Rand100(diceSize, rng);
+                Console.WriteLine($"Your first roll is: {roll1}, press any key to roll your second die...");
+                Console.ReadKey();
                 int roll2 = Rand100(diceSize, rng);
                 //int roll1 = CryptoRoll(diceSize, rngcsp);    //These act wonky past a certain point
                 //int roll2 = CryptoRoll(diceSize, rngcsp);    //Luckily, there are not a lot of dice above d20
