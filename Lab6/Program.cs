@@ -12,10 +12,9 @@ namespace Lab6
     class Program
     {
 
-        static int Rand100(int max)
+        static int Rand100(int max, Random rng)
         {
             max++;
-            Random rng = new Random();
 
             int[] oneHundo = new int[1000];
 
@@ -171,7 +170,8 @@ namespace Lab6
         static void Main(string[] args)
         {
 
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            RNGCryptoServiceProvider rngcsp = new RNGCryptoServiceProvider();
+            Random rng = new Random();
             Console.WriteLine("Hello, would you like to play risk free gambling?");
             Console.WriteLine("You will be rolling dice with varying size of your choice as many times as you want.");
 
@@ -181,10 +181,10 @@ namespace Lab6
                 Console.WriteLine("Would you like to roll the dice?");
 
                 int diceSize = ValidIntry("How big are the dice?");
-                int roll1 = Rand100(diceSize);
-                int roll2 = Rand100(diceSize);
-                //int roll1 = CryptoRoll(diceSize, rng);    //These act wonky past a certain point
-                //int roll2 = CryptoRoll(diceSize, rng);    //Luckily, there are not a lot of dice above d20
+                int roll1 = Rand100(diceSize, rng);
+                int roll2 = Rand100(diceSize, rng);
+                //int roll1 = CryptoRoll(diceSize, rngcsp);    //These act wonky past a certain point
+                //int roll2 = CryptoRoll(diceSize, rngcsp);    //Luckily, there are not a lot of dice above d20
 
                 if(roll1 == roll2)
                 {
