@@ -142,30 +142,6 @@ namespace Lab6
 
         static int CryptoRoll(int upperBound, RNGCryptoServiceProvider rng)
         {
-
-            ////This is from Stack Overflow, thanks guys
-
-            //byte[] singleByteBuf = new byte[1];
-
-            //int max = Byte.MaxValue - Byte.MaxValue % upperBound;
-
-            ////while (true)
-            ////{
-
-            //    rng.GetBytes(singleByteBuf);
-            //    int b = singleByteBuf[0];
-            //    if (b < max)
-            //    {
-
-            //        return b % upperBound + 1;
-
-            //    }
-
-            //return b;
-
-            ////}
-
-            
             
                 // Buffer storage.
                 byte[] data = new byte[4];
