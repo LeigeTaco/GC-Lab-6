@@ -143,27 +143,48 @@ namespace Lab6
         static int CryptoRoll(int upperBound, RNGCryptoServiceProvider rng)
         {
 
-            //This is from Stack Overflow, thanks guys
+            ////This is from Stack Overflow, thanks guys
 
-            byte[] singleByteBuf = new byte[1];
+            //byte[] singleByteBuf = new byte[1];
 
-            int max = Byte.MaxValue - Byte.MaxValue % upperBound;
+            //int max = Byte.MaxValue - Byte.MaxValue % upperBound;
 
-            //while (true)
-            //{
+            ////while (true)
+            ////{
 
-                rng.GetBytes(singleByteBuf);
-                int b = singleByteBuf[0];
-                if (b < max)
-                {
+            //    rng.GetBytes(singleByteBuf);
+            //    int b = singleByteBuf[0];
+            //    if (b < max)
+            //    {
 
-                    return b % upperBound + 1;
+            //        return b % upperBound + 1;
 
-                }
+            //    }
 
-            return b;
+            //return b;
 
-            //}
+            ////}
+
+            
+            
+                // Buffer storage.
+                byte[] data = new byte[4];
+            int value = -1;
+
+                // Ten iterations.
+            while(value < 1 || value > upperBound)
+            {
+            
+                // Fill buffer.
+                rng.GetBytes(data);
+                // Convert to int 32.
+                value = (BitConverter.ToInt32(data, 0)) % (upperBound + 1);
+                value++;
+                //Console.WriteLine(value);
+
+            }
+
+            return value;
 
         }
 
@@ -178,15 +199,15 @@ namespace Lab6
             while (ContinueRolling())
             {
 
-                Console.WriteLine("Would you like to roll the dice?");
+                //Console.WriteLine("Would you like to roll the dice?");
 
                 int diceSize = ValidIntry("How big are the dice?");
-                int roll1 = Rand100(diceSize, rng);
+                //int roll1 = Rand100(diceSize, rng);
+                int roll1 = CryptoRoll(diceSize, rngcsp);    //These act wonky past a certain point
                 Console.WriteLine($"Your first roll is: {roll1}, press any key to roll your second die...");
                 Console.ReadKey();
-                int roll2 = Rand100(diceSize, rng);
-                //int roll1 = CryptoRoll(diceSize, rngcsp);    //These act wonky past a certain point
-                //int roll2 = CryptoRoll(diceSize, rngcsp);    //Luckily, there are not a lot of dice above d20
+                //int roll2 = Rand100(diceSize, rng);                
+                int roll2 = CryptoRoll(diceSize, rngcsp);    //Luckily, there are not a lot of dice above d20
 
                 if(roll1 == roll2)
                 {
